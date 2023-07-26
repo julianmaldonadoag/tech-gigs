@@ -26,7 +26,11 @@
                         <form method="POST" action="{{ url('listings/' . $listing->id ) }}">
                             @csrf
                             @method('DELETE')
-                            <button class="text-red-500">
+                            <button
+                                class="text-red-500"
+                                type="submit"
+                                onclick="return confirm('Are you sure you want to delete this listing?')"
+                            >
                                 <i class="fa-solid fa-trash"></i> Delete
                             </button>
                         </form>

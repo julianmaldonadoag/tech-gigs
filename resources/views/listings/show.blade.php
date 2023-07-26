@@ -1,6 +1,5 @@
 <x-layout>
-    @include('partials._search')
-
+    <h1 class="text-3xl text-center font-bold my-3 uppercase">{{ $listing->title }}</h1>
     <a href="{{ url('/') }}" class="inline-block text-black ml-4 mb-4">
         <i class="fa-solid fa-arrow-left"></i> Back
     </a>
@@ -10,7 +9,7 @@
                 class="flex flex-col items-center justify-center text-center"
             >
                 <img
-                    class="w-48 mr-6 mb-6"
+                    class="h-36 mr-6 mb-6"
                     src="{{ $listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-logo-company.png') }}"
                     alt=""
                 />
@@ -52,7 +51,8 @@
             </div>
         </x-card>
 
-        <x-card class="mt-4 p-2 flex space-x-6">
+        @if ($listing->user_id == auth()->id())
+        <x-card class="flex place-content-center space-x-6 mt-4 p-2">
             <a href="{{ url('listings/'.$listing->id.'/edit') }}">
                 <i class="fa-solid fa-pencil"></i> Edit
             </a>
@@ -60,10 +60,15 @@
             <form method="POST" action="{{ url('listings/' . $listing->id ) }}">
                 @csrf
                 @method('DELETE')
-                <button class="text-red-500">
+                <button
+                    class="text-red-500"
+                    type="submit"
+                    onclick="return confirm('Are you sure you want to delete this listing?')"
+                >
                     <i class="fa-solid fa-trash"></i> Delete
                 </button>
             </form>
         </x-card>
+        @endif
     </div>
 </x-layout>

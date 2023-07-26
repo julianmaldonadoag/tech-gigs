@@ -1,6 +1,6 @@
 <x-layout>
     <x-card
-        class="p-10 rounded max-w-lg mx-auto mt-24"
+        class="p-10 rounded max-w-lg mx-auto mt-10"
     >
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
@@ -120,7 +120,7 @@
                     name="logo"
                 />
                 <img
-                    class="w-48 mr-6 mb-6"
+                    class="h-36 mr-6 mb-6"
                     src="{{ $listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-logo-company.png') }}"
                     alt=""
                 />
@@ -141,9 +141,7 @@
                     name="description"
                     rows="10"
                     placeholder="Include tasks, requirements, salary, etc"
-                >
-                    {{ $listing->description }}
-                </textarea>
+                >{{ $listing->description }}</textarea>
                 @error('description')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -156,7 +154,7 @@
                     Edit Gig
                 </button>
 
-                <a href="{{ url('/') }}" class="text-black ml-4"> Back </a>
+                <a href="{{ url()->previous() }}" class="text-black ml-4"> Back </a>
             </div>
         </form>
     </x-card>

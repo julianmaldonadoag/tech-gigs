@@ -5,6 +5,7 @@ use App\Models\Listing;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
@@ -36,7 +37,8 @@ class ListingController extends Controller
             'website' => 'required',
             'email' => ['required', 'email'],
             'tags' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'logo' => 'max:10000|mimes:jpeg,png,jpg'
         ]);
 
         if ($request->hasFile('logo')) {
@@ -52,6 +54,10 @@ class ListingController extends Controller
 
     // Show Edit Form
     public function edit(Listing $listing) {
+        // Make sure logged in user is owner
+        if ($listing->user_id != auth()->id()) {
+            return redirect('/');
+        }
         return view('listings.edit', ['listing' => $listing]);
     }
 
@@ -69,16 +75,21 @@ class ListingController extends Controller
             'website' => 'required',
             'email' => ['required', 'email'],
             'tags' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'logo' => 'max:10000|mimes:jpeg,png,jpg'
         ]);
 
         if ($request->hasFile('logo')) {
+            // Delete last logo
+            $lastListing = Listing::findOrFail($listing->id);
+            Storage::delete('public/' . $lastListing->logo);
+            // Store new logo
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
         $listing->update($formFields);
 
-        return back()->with('message', 'Listing updated successfully');
+        return redirect('/listings/manage')->with('message', 'Listing updated successfully');
     }
 
     // Delete Listing
@@ -88,8 +99,13 @@ class ListingController extends Controller
             abort(403, 'Unauthorized Action');
         }
 
+        // Delete the logo file from storage
+        if ($listing->logo) {
+            Storage::delete('public/' . $listing->logo);
+        }
+
         $listing->delete();
-        return redirect('/')->with('message', 'Listing deleted successfully');
+        return redirect('/listings/manage')->with('message', 'Listing deleted successfully');
     }
 
     // Manage Listints

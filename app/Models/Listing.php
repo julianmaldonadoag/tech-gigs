@@ -12,11 +12,11 @@ class Listing extends Model
     // protected $fillable = ['title', 'company', 'location', 'website', 'email', 'description', 'tags'];
 
     public function scopeFilter($query, array $filters) {
-        if ($filters['tag'] ?? 'false') {
+        if ($filters['tag'] ?? false) {
             $query->where('tags', 'like', '%' . request('tag') . '%');
         }
 
-        if ($filters['search'] ?? 'false') {
+        if ($filters['search'] ?? false) {
             $search = '%' . request('search') . '%';
             $query
                 ->where('title', 'like', $search)
