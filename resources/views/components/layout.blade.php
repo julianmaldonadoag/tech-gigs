@@ -19,13 +19,13 @@
             theme: {
                 extend: {
                     colors: {
-                        laravel: "#ef3b2d",
+                        "primary-color": "#3d5a80",
                     },
                 },
             },
         };
     </script>
-    <title>LaraGigs | Find Laravel Jobs & Projects</title>
+    <title>TechGigs | Find Tech Jobs & Projects</title>
 </head>
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4">
@@ -40,7 +40,7 @@
                 </span>
             </li>
             <li>
-                <a href="{{ url('/listings/manage') }}" class="hover:text-laravel">
+                <a href="{{ url('/listings/manage') }}" class="hover:text-primary-color">
                     <i class="fa-solid fa-gear"></i> Manage Listings
                 </a>
             </li>
@@ -54,12 +54,12 @@
             </li>
             @else
             <li>
-                <a href="{{ url('/register') }}" class="hover:text-laravel">
+                <a href="{{ url('/register') }}" class="hover:text-primary-color">
                     <i class="fa-solid fa-user-plus"></i> Register
                 </a>
             </li>
             <li>
-                <a href="{{ url('/login') }}" class="hover:text-laravel">
+                <a href="{{ url('/login') }}" class="hover:text-primary-color">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
                 </a>
             </li>
@@ -71,7 +71,7 @@
         {{ $slot }}
     </main>
     <footer
-        class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center"
+        class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-primary-color text-white h-24 mt-24 opacity-90 md:justify-center"
     >
         <p class="ml-2">Copyright &copy; 2023, All Rights reserved</p>
 

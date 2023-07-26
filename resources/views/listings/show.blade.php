@@ -11,7 +11,7 @@
             >
                 <img
                     class="w-48 mr-6 mb-6"
-                    src="{{ $listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-image.png') }}"
+                    src="{{ $listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-logo-company.png') }}"
                     alt=""
                 />
 
@@ -35,7 +35,7 @@
 
                         <a
                             href="mailto:{{ $listing->email }}"
-                            class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
+                            class="block bg-primary-color text-white mt-6 py-2 rounded-xl hover:opacity-80"
                         >
                             <i class="fa-solid fa-envelope"></i> Contact Employer
                         </a>

@@ -121,7 +121,7 @@
                 />
                 <img
                     class="w-48 mr-6 mb-6"
-                    src="{{ $listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-image.png') }}"
+                    src="{{ $listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-logo-company.png') }}"
                     alt=""
                 />
                 @error('logo')
@@ -151,7 +151,7 @@
 
             <div class="mb-6">
                 <button
-                    class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                    class="bg-primary-color text-white rounded py-2 px-4 hover:bg-black"
                 >
                     Edit Gig
                 </button>

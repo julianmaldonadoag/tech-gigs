@@ -44,7 +44,7 @@
             <div class="mb-6">
                 <button
                     type="submit"
-                    class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                    class="bg-primary-color text-white rounded py-2 px-4 hover:bg-black"
                 >
                     Sign In
                 </button>
@@ -53,7 +53,7 @@
             <div class="mt-8">
                 <p>
                     Don't have an account?
-                    <a href="{{ url('/register') }}" class="text-laravel">Register</a>
+                    <a href="{{ url('/register') }}" class="text-primary-color">Register</a>
                 </p>
             </div>
         </form>
